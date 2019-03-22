@@ -62,16 +62,18 @@ class Ship:
     def update(self):
         """Update the ship's positioning based on movement flag."""
         # Update ship's center value, not the rect
-        move = float(self.ai_settings.ship_speed_factor)
+
         if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.rect.centerx += move
+            self.centerx += self.ai_settings.ship_speed_factor
         if self.moving_left and self.rect.left > 0:
-            self.rect.centerx -= move
+            self.centerx -= self.ai_settings.ship_speed_factor
+        self.rect.centerx = self.centerx
 
         if self.moving_up and self.rect.top > 0:
-            self.rect.centery -= move
+            self.centery -= self.ai_settings.ship_speed_factor
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
-            self.rect.centery += move
+            self.centery += self.ai_settings.ship_speed_factor
+        self.rect.centery = self.centery
 
     def blitme(self):
         """(Block Image Transfer) Draw the ship in its current location"""
