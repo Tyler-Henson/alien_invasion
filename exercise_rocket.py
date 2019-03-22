@@ -33,7 +33,11 @@ class Ship:
         self.rect.bottom = self.screen_rect.bottom
 
         # Store a decimal value for the ship's center.
+
         self.center = float(self.rect.centerx)
+        #self.center = float(self.rect.centery)
+        self.centerx = float(self.rect.centerx)
+        self.centery = float(self.rect.centery)
 
         # Movement Flag
         self.moving_right = False
@@ -41,38 +45,37 @@ class Ship:
         self.moving_up = False
         self.moving_down = False
 
-    def update(self):
+
+        '''    
+        def update(self):
         """Update the ship's positioning based on movement flag."""
         # Update ship's center value, not the rect
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center += self.ai_settings.ship_speed_factor
         if self.moving_left and self.rect.left > 0:
             self.center -= self.ai_settings.ship_speed_factor
+
         # Update rect object from self.center.
         self.rect.centerx = self.center
+        '''
 
-        if self.moving_up and self.rect.up > 0:
-            self.center -= self.ai_settings.ship_speed_factor
-        if self.moving_down and self.rect.left < 800:  # hardcoded limit!!!!
-            self.center -= self.ai_settings.ship_speed_factor
-        self.rect.centery = self.center
+    def update(self):
+        """Update the ship's positioning based on movement flag."""
+        # Update ship's center value, not the rect
+        move = float(self.ai_settings.ship_speed_factor)
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.rect.centerx += move
+        if self.moving_left and self.rect.left > 0:
+            self.rect.centerx -= move
 
+        if self.moving_up and self.rect.top > 0:
+            self.rect.centery -= move
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.centery += move
 
     def blitme(self):
         """(Block Image Transfer) Draw the ship in its current location"""
         self.screen.blit(self.image, self.rect)
-
-
-class Rocket(Ship):
-
-    def update(self):
-        """Update the ship's positioning based on movement flag."""
-        # Update ship's center value, not the rect
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center += self.ai_settings.ship_speed_factor
-        if self.moving_left and self.rect.left > 0:
-            self.center -= self.ai_settings.ship_speed_factor
-
 
 def check_events(ship):
     """Respond to key presses and mouse events"""
@@ -93,12 +96,12 @@ def check_keydown_events(event, ship):
     if event.key == pygame.K_RIGHT:
         # Start moving ship to the right
         ship.moving_right = True
-    elif event.key == pygame.K_LEFT:
+    if event.key == pygame.K_LEFT:
         ship.moving_left = True
-    elif event.key == pygame.K_LEFT:
-        ship.moving_left = True
-    elif event.key == pygame.K_LEFT:
-        ship.moving_left = True
+    if event.key == pygame.K_UP:
+        ship.moving_up = True
+    if event.key == pygame.K_DOWN:
+        ship.moving_down = True
 
 
 def check_keyup_events(event, ship):
@@ -106,8 +109,12 @@ def check_keyup_events(event, ship):
     if event.key == pygame.K_RIGHT:
         # Stop moving ship to the right
         ship.moving_right = False
-    elif event.key == pygame.K_LEFT:
+    if event.key == pygame.K_LEFT:
         ship.moving_left = False
+    if event.key == pygame.K_UP:
+        ship.moving_up = False
+    if event.key == pygame.K_DOWN:
+        ship.moving_down = False
 
 
 def update_screen(ai_settings, screen, ship):
