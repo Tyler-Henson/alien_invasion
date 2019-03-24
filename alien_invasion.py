@@ -1,3 +1,6 @@
+"""
+Alien Invasion from Python Crash Course
+"""
 import pygame
 from settings import Settings
 from ship import Ship

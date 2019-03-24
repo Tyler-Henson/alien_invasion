@@ -1,3 +1,6 @@
+"""
+Problem 12-3 from Python Crash Course
+"""
 import pygame
 import sys
 

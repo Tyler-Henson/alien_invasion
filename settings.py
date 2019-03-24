@@ -1,3 +1,6 @@
+"""
+Alien Invasion from Python Crash Course
+"""
 class Settings:
     """A class to store all settings for Alien Invasion"""
 

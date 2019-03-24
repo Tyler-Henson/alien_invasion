@@ -1,3 +1,6 @@
+"""
+Alien Invasion from Python Crash Course
+"""
 import sys
 import pygame
 
