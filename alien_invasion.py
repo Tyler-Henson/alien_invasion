@@ -18,6 +18,7 @@ def run_game():
     # Make a ship.
     ship = Ship(ai_settings, screen)
 
+    print(ai_settings.bullet_color)
     # Main loop of the game
     while True:
         gf.check_events(ship)
