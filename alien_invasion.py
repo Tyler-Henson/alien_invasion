@@ -21,7 +21,6 @@ def run_game():
     # Make a group to store bullets in.
     bullets = Group()
 
-    # print(ai_settings.bullet_color)
     # Main loop of the game
     while True:
         gf.check_events(ai_settings, screen, ship, bullets)
