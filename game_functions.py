@@ -4,6 +4,7 @@ Alien Invasion from Python Crash Course
 import sys
 import pygame
 from bullet import Bullet
+from alien import Alien
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -50,18 +51,17 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(ai_settings, screen, ship, alien, bullets):
+def update_screen(ai_settings, screen, ship, aliens, bullets):
     """Update images on the screen and flip to the new screen."""
     # Redraw the screen during each pass through the loop.
     screen.fill(ai_settings.bg_color)
 
-
     # Redraw all bullets behind ship and aliens
     for bullet in bullets.sprites():
         bullet.draw_bullet()
-
+    # Order of update determines what object is on another.
     ship.blitme()
-    alien.blitme()
+    aliens.draw(screen)
 
     # make the most recently drawn screen visible
     pygame.display.flip()
@@ -76,3 +76,20 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+
+def create_fleet(ai_settings, screen, aliens):
+    """Create a full fleet of aliens."""
+    # Create an alien and find the number of aliens in a row.
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = ai_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+
+    # Create the first row of aliens
+    for alien_number in range(number_aliens_x):
+        # Create an alien and place it in the row.
+        alien = Alien(ai_settings, screen)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)

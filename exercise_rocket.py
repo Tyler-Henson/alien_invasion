@@ -38,7 +38,7 @@ class Ship:
         # Store a decimal value for the ship's center.
 
         self.center = float(self.rect.centerx)
-        #self.center = float(self.rect.centery)
+        # self.center = float(self.rect.centery)
         self.centerx = float(self.rect.centerx)
         self.centery = float(self.rect.centery)
 
@@ -47,7 +47,6 @@ class Ship:
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
-
 
         '''    
         def update(self):
@@ -81,6 +80,7 @@ class Ship:
     def blitme(self):
         """(Block Image Transfer) Draw the ship in its current location"""
         self.screen.blit(self.image, self.rect)
+
 
 def check_events(ship):
     """Respond to key presses and mouse events"""
