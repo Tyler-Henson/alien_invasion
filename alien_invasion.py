@@ -33,7 +33,7 @@ def run_game():
 
         # Get rid of bullets that have disappeared.
         gf.update_bullets(bullets)
-        gf.update_aliens(aliens)
+        gf.update_aliens(ai_settings, aliens)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
