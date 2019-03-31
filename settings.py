@@ -17,11 +17,11 @@ class Settings:
         self.ship_speed_factor = 1.5
 
         # Bullet settings
-        self.bullet_speed_factor = 1
-        self.bullet_width = 300  # test at 300
+        self.bullet_speed_factor = 3  # 3 up from 1
+        self.bullet_width = 300  # 3
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
-        self.bullets_allowed = 3  # test at 300
+        self.bullets_allowed = 300  # 3
 
         # Alien settings
         self.alien_speed_factor = 1
