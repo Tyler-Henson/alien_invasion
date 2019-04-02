@@ -4,6 +4,7 @@ Alien Invasion from Python Crash Course
 import pygame
 from pygame.sprite import Group
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 # from alien import Alien
 import game_functions as gf
@@ -16,6 +17,9 @@ def run_game():
     screen = pygame.display.set_mode(
         (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
+
+    # Create an instance to store game stats.
+    stats = GameStats(ai_settings)
 
     # Make a ship, group of bullets, group of aliens
     ship = Ship(ai_settings, screen)
@@ -33,7 +37,7 @@ def run_game():
 
         # Get rid of bullets that have disappeared.
         gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        gf.update_aliens(ai_settings, aliens)
+        gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
