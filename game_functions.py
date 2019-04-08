@@ -44,6 +44,7 @@ def start_game(ai_settings, screen, stats, ship, aliens, bullets,):
 
     # Reset
     stats.reset_stats()
+    ai_settings.initialize_dynamic_settings()
     stats.game_active = True
 
     # Empty the list of aliens and bullets
@@ -130,8 +131,9 @@ def check_bullet_collisions(ai_settings, screen, ship, aliens, bullets):
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
-        # Destroy existing bullets and create new fleet.
+        # Destroy existing bullets, speed up game, and create new fleet.
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
 
 
