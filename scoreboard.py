@@ -7,7 +7,7 @@ from pygame.sprite import Group
 from ship import Ship
 
 
-class Scoreboard():
+class Scoreboard:
     """A class to report scoring information."""
 
     def __init__(self, ai_settings, screen, stats):
@@ -61,8 +61,9 @@ class Scoreboard():
 
     def prep_level(self):
         """Turn the level into a rendered image."""
-        self.level_image = self.font.render("Level:" + str(self.stats.level), True,
-            self.text_color, self.ai_settings.bg_color)
+        self.level_image = self.font.render(
+            "Level:" + str(self.stats.level), True,self.text_color,
+            self.ai_settings.bg_color)
 
         # Position the level below the score.
         self.level_rect = self.level_image.get_rect()
@@ -77,7 +78,3 @@ class Scoreboard():
             ship.rect.x = 10 + ship_number * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)
-
-
-
-

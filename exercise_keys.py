@@ -9,7 +9,6 @@ from settings import Settings
 
 def check_events():
     """Respond to key presses and mouse events"""
-    # event = pygame.event.wait()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()

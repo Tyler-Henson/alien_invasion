@@ -148,7 +148,7 @@ def check_bullet_collisions(ai_settings, screen, stats, sb, ship, aliens,
         check_high_scores(stats, sb)
 
     if len(aliens) == 0:
-        #If entire fleet is destroyed, start a new level.
+        # If entire fleet is destroyed, start a new level.
         bullets.empty()
         ai_settings.increase_speed()
 
